@@ -1,6 +1,7 @@
 package ua.processing.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,7 +31,7 @@ public class Ticket {
     @Column(name = "date_time", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime dateTime;
-    @Column(name = "status", nullable = false)
+    @Column(name = "state", nullable = false)
     @Enumerated(EnumType.STRING)
-    private TicketStatus status;
+    private TicketStatus state;
 }

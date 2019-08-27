@@ -1,5 +1,8 @@
 package ua.processing.service;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +29,9 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket update(Long id) {
-        Ticket one = findOne(id);
-        one.setStatus(TicketStatus.PAYMENTCOMPLETED);
+    public Ticket update(Ticket ticket) {
+        Ticket one = findOne(ticket.getId());
+        one.setState(TicketStatus.COMPLETED);
         return ticketRepository.save(one);
     }
 
@@ -36,5 +39,10 @@ public class TicketServiceImpl implements TicketService {
     public Ticket findOne(Long id) {
         return ticketRepository.findById(id).orElseThrow(
             () -> new IllegalArgumentException("ticket which id: " + id + " not found"));
+    }
+
+    @Override
+    public List<Ticket> all() {
+        return ticketRepository.findAll();
     }
 }

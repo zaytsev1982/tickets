@@ -25,7 +25,7 @@ public class TicketConverter implements Converter<TicketDto, Ticket> {
         Ticket ticket = new Ticket();
         ticket.setRouteNumber(Integer.valueOf(ticketDto.getRouteNumber()));
         ticket.setDateTime(time(ticketDto));
-        ticket.setStatus(TicketStatus.INPROCESSING);
+        ticket.setState(TicketStatus.PROCESSING);
         return service.create(ticket);
 
     }
